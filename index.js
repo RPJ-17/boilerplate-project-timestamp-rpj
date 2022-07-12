@@ -22,7 +22,7 @@ app.get("/", function (req, res) {
 
 // your first API endpoint... 
 app.get("/api/:date", (req, res) => {
-  const regex = /[-]/g;
+  const regex = /[-|\s\w]/gi;
   const strHasDash = regex.test(req.params.date);
   let dateToReturn;
   let unixDate;
