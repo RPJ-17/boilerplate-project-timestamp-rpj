@@ -22,7 +22,7 @@ app.get("/", function (req, res) {
 
 // your first API endpoint... 
 app.get("/api/:date", (req, res) => {
-  const regex = /[-|\s\w]/gi;
+  const regex = /[-|\s]/gi;
   const strHasDash = regex.test(req.params.date);
   let dateToReturn;
   let unixDate;
@@ -30,6 +30,7 @@ app.get("/api/:date", (req, res) => {
   if (strHasDash) {
     dateToReturn = new Date(req.params.date);
     unixDate = Date.parse(req.params.date);
+    console.log('this is executed')
     if (isNaN(unixDate)) {
       res.json({error: "Invalid Date"})
     }
@@ -37,6 +38,7 @@ app.get("/api/:date", (req, res) => {
   } else {
     dateToReturn = new Date(Number(req.params.date));
     unixDate = Number(req.params.date);
+    console.log('no, it\'s here')
     if (isNaN(unixDate)) {
       res.json({error: "Invalid Date"})
     }
